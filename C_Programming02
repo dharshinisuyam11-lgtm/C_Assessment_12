@@ -1,0 +1,26 @@
+#include <stdio.h>
+void getdata(char *str,char *ch)
+{
+    printf("Enter String: ");
+    scanf("%s",str);
+    printf("Enter Character: ");
+    scanf(" %c",ch);
+}
+void findposition(char *str,char *ch)
+{
+    int i=1;
+    while (*str!='\0')
+    {
+        if (*str==*ch)
+            printf("%d ",i);
+        str++;
+        i++;
+    }
+}
+int main()
+{
+    char str[100];
+    char ch;
+    getdata(str,&ch);
+    findposition(str,&ch);
+}
