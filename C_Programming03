@@ -1,0 +1,37 @@
+#include <stdio.h>
+void getdata(char *str,char *sub)
+{
+    printf("Enter Main String: ");
+    scanf("%s",str);
+    printf("Enter Sub String: ");
+    scanf("%s",sub);
+}
+void findposition(char *str, char *sub)
+{
+    char *p, *q;
+    int pos=1;
+    while (*str!='\0')
+    {
+        p=str;
+        q=sub;
+        while (*p==*q && *q!='\0')
+        {
+            p++;
+            q++;
+        }
+        if (*q=='\0')
+        {
+            printf("%d", pos);
+            return;
+        }
+        str++;
+        pos++;
+    }
+    printf("Not Found");
+}
+int main()
+{
+    char str[100], sub[100];
+    getdata(str, sub);
+    findposition(str,sub);
+}
