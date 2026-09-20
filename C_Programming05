@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+void multiply(char *num1, char *num2)
+{
+    int result[100]={0};
+    int len1=strlen(num1);
+    int len2=strlen(num2);
+    char *p1, *p2;
+    int i,j;
+    for (p1=num1+len1-1,i=len1-1;p1>=num1;p1--,i--)
+    {
+        for (p2=num2+len2-1,j=len2-1;p2>=num2;p2--,j--)
+        {
+            int mul=(*p1-'0')*(*p2-'0');
+            int sum=mul+result[i+j+1];
+            result[i+j+1]=sum%10;
+            result[i+j]+=sum/10;
+        }
+    }
+    i=0;
+    while (i<len1+len2 && result[i]==0)
+        i++;
+    if (i==len1+len2)
+    {
+        printf("0");
+        return;
+    }
+    while (i<len1+len2)
+        printf("%d", result[i++]);
+}
+int main()
+{
+    char number1[51],number2[51];
+    printf("Enter first number:");
+    scanf("%50s",number1);
+    printf("Enter second number:");
+    scanf("%50s",number2);
+    printf("Product=");
+    multiply(number1,number2);
+    return 0;
+}
