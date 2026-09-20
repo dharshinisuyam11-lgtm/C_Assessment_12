@@ -1,0 +1,56 @@
+#include <stdio.h>
+void getnumbers(char *num1, char *num2)
+{
+    printf("Enter First Number:");
+    scanf("%s",num1);
+    printf("Enter Second Number:");
+    scanf("%s",num2);
+}
+int strlength(char *str)
+{
+    int len=0;
+    while (*(str+len)!='\0')
+        len++;
+    return len;
+}
+void addnumbers(char *num1,char *num2,char *result)
+{
+    int len1,len2,i,j,k;
+    int sum,carry = 0;
+    len1=strlength(num1);
+    len2=strlength(num2);
+    i=len1-1;
+    j=len2-1;
+    k=(len1>len2 ? len1:len2);
+    *(result+k+1)='\0';
+    while (i>=0||j>=0||carry)
+    {
+        sum=carry;
+        if(i>=0)
+            sum+=*(num1+i)-'0';
+        if (j>=0)
+            sum += *(num2+j)-'0';
+        *(result+k)=(sum%10)+'0';
+        carry=sum/10;
+        i--;
+        j--;
+        k--;
+    }
+    if (k>=0)
+        *(result+k)='0';
+}
+void print(char *result)
+{
+    if (*result=='0')
+        result++;
+    printf("Result=%s\n",result);
+}
+int main()
+{
+    char number1[51];
+    char number2[51];
+    char result[52];
+    getnumbers(number1,number2);
+    addnumbers(number1,number2, result);
+    print(result);
+}
