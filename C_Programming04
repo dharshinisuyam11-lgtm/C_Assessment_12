@@ -1,0 +1,23 @@
+#include <stdio.h>
+void getstring(char *str)
+{
+    printf("Enter String:");
+    scanf(" %[^\n]", str);
+}
+void countwords(char *str)
+{
+    int count=1;
+    while (*str!='\0')
+    {
+        if (*str==' ')
+            count++;
+        str++;
+    }
+    printf("Number of words=%d",count);
+}
+int main()
+{
+    char str[100];
+    getstring(str);
+    countwords(str);
+}
